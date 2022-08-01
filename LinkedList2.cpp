@@ -8,7 +8,7 @@ class Node{
 		int data=0;
 		next=NULL;
 	}
-	Node(int data,Node* next){
+	Node(int data,Node* next=NULL){
 		setData(data);
 		setNext(next);
 	}
@@ -58,8 +58,8 @@ class LinkedList{
 			if(!isEmpty()){
 				Node* temp=head;
 				while(temp!=NULL){
-					cout<<temp->getData();
-					temp=temp->getNext();
+					cout<<temp->getData() << '\n';
+					temp = temp->getNext();
 				}
 			}
 		}
@@ -74,26 +74,23 @@ class LinkedList{
 		return head;	
 		}
 		Node* getLastElement(){
-			return getNthElement(getLength());
+			return getNthElement(getLength()-1);
 		}
 		Node* getFirstElement(){
 			return head;
 		}
 		void addToBegining(int value){
-			if(!isEmpty())
+			if (!isEmpty())
 			{
-//				Node *temp=new Node(value,head);
-//				head=temp;
-				 Node* newNode = new Node(value);
-        newNode->setNext(head);
-        head = newNode;
+				Node* newNode = new Node(value);
+				newNode->setNext(head);
+				head = newNode;
 			}
 		}
 		void addAtLast(int value){
-			Node* temp=head;
-			head->getNext();
-			delete head;
-			head=temp;
+			Node* newNode = new Node(value);
+			Node* temp = getLastElement();
+			temp->setNext(newNode);	
 		}
 		void dellLastElement(){
 			{
@@ -136,12 +133,11 @@ class LinkedList{
 		
 };
 int main(){
-	Node* head=new Node;
+	Node* head=new Node(2);
 	LinkedList l1(head);
-	l1.addAtLast(2);
-	l1.addToBegining(7);
+	l1.addAtLast(10);
+	l1.addToBegining(1);
 	l1.print();
-	l1.getLength();
 	delete head;
 	return 0;
 }
