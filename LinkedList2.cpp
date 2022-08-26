@@ -163,7 +163,6 @@ class LinkedList {
         else {
             Node * prev = head;
             Node * temp = head->getNext();
-            cout << "To delete : " << value << endl;
             while (temp != NULL){
                 if (value == temp -> getData()){
                     prev->setNext(temp->getNext());
