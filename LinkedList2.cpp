@@ -137,34 +137,48 @@ class LinkedList {
         }
     }
     void delNthElement(int index){
-        Node * temp1 = head;
-        Node * temp2 = temp1 -> getNext();
-        for (int i = 0; i < index - 2; i++){
-            temp1 = temp1 -> getNext();
-            temp2 = temp2 -> getNext();
+        if (index == 1){
+            removeFromBegining();
         }
-        delete temp2;
-        temp1 -> getNext();
+        else if (index == getLength()){
+            dellLastElement();
+        }
+        else {
+            Node * prev = NULL;
+            Node * temp = head;
+            int count = 1;
+            while (count != index){
+                count++;
+                prev = temp;
+                temp = temp->getNext();
+            }
+            prev->setNext(temp->getNext());
+            delete temp;
+        }
     }
     void delElementOfValue(int value){
+        Node * prev = NULL;
         Node * temp = head;
         while (temp != NULL){
+            prev = temp;
             if (value == temp -> getData()){
-                delete temp;
-                temp = temp -> getNext();
+                prev->setNext(temp->getNext());
             }
+            temp = temp -> getNext();
         }
     }
 
 };
 int main(){
     LinkedList l1;
-    l1.addToBegining(1);
-    l1.addAtLast(0);
+    l1.addAtLast(1);
+    l1.addAtLast(2);
+    l1.addAtLast(3);
+    l1.addAtLast(4);
+    l1.addAtLast(5);
+    l1.print();
+    l1.delNthElement(1);
     l1.dellLastElement();
-    l1.removeFromBegining();
-    l1.addToBegining(1);
-    l1.addAtLast(0);
     l1.print();
     return 0;
 }
