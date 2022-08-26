@@ -63,14 +63,12 @@ class LinkedList {
     }
 	
     void print(){
-        if (!isEmpty()){
-            Node * temp = head;
-            while (temp != NULL){
-                cout << temp -> getData()<< "->";
-                temp = temp -> getNext();
-            }
-            cout << "NULL\n";
+        Node * temp = head;
+        while (temp != NULL){
+            cout << temp -> getData()<< "->";
+            temp = temp -> getNext();
         }
+        cout << "NULL\n";
     }
 	
     Node * getNthElement(int index){ // Node
@@ -113,23 +111,30 @@ class LinkedList {
     }
 	
     void dellLastElement(){
-        {
-            Node * temp1 = head;
-            Node * temp2 = temp1 -> getNext();
-            while (temp2 != NULL){
-                temp1 = temp1 -> getNext();
-                temp2 = temp2 -> getNext();
-            }
-            delete temp2;
-            temp1 -> setNext(NULL);
+        if (!isEmpty() && getLength() > 1){
+            Node * secLast = getNthElement(getLength() - 1);
+            Node * last = secLast->getNext();
+            delete last;
+            secLast->setNext(NULL);
         }
-
+        else {
+            delete head;
+            head = NULL;
+        }
     }
     void removeFromBegining(){
-        Node * temp = head;
-        temp = head -> getNext();
-        delete head;
-        head = temp;
+        if (!isEmpty()){
+            if (head->getNext() == NULL){
+                delete head;
+                head = NULL;
+            }
+            else {
+                Node * temp = head;
+                temp = head -> getNext();
+                delete head;
+                head = temp;
+            }
+        }
     }
     void delNthElement(int index){
         Node * temp1 = head;
@@ -154,8 +159,12 @@ class LinkedList {
 };
 int main(){
     LinkedList l1;
-    l1.addAtLast(0);
     l1.addToBegining(1);
+    l1.addAtLast(0);
+    l1.dellLastElement();
+    l1.removeFromBegining();
+    l1.addToBegining(1);
+    l1.addAtLast(0);
     l1.print();
     return 0;
 }
