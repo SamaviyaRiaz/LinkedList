@@ -157,14 +157,22 @@ class LinkedList {
         }
     }
     void delElementOfValue(int value){
-        Node * prev = NULL;
-        Node * temp = head;
-        while (temp != NULL){
-            prev = temp;
-            if (value == temp -> getData()){
-                prev->setNext(temp->getNext());
+        if (value == head->getData()){
+            removeFromBegining();
+        }
+        else {
+            Node * prev = head;
+            Node * temp = head->getNext();
+            cout << "To delete : " << value << endl;
+            while (temp != NULL){
+                if (value == temp -> getData()){
+                    prev->setNext(temp->getNext());
+                    delete temp;
+                    return;
+                }
+                prev = temp;
+                temp = temp -> getNext();
             }
-            temp = temp -> getNext();
         }
     }
 
@@ -177,8 +185,7 @@ int main(){
     l1.addAtLast(4);
     l1.addAtLast(5);
     l1.print();
-    l1.delNthElement(1);
-    l1.dellLastElement();
+    l1.delElementOfValue(2);
     l1.print();
     return 0;
 }
