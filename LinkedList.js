@@ -8,7 +8,6 @@ class Node{
 class LinkedList{
     constructor(){
         this.head = null;
-        // this.length = 0;
     }
     isEmpty(){
         return (this.head == null);
@@ -21,7 +20,6 @@ class LinkedList{
         let temp = new Node(value);
         temp.next
         this.head = temp;
-        // this.length++;
     }
     insertAtLast(value)
     {
@@ -37,7 +35,6 @@ class LinkedList{
             }
             var temp1 = new Node(value);
             temp.next = temp1;
-            // this.length++;
         }
     }
      getFirstValue(){
