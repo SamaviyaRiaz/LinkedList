@@ -57,7 +57,7 @@ class LinkedList{
     }
     getLength(){
         if(!this.isEmpty()){
-            var count=0;
+            var count=1;
             var temp=this.head;
             while(temp.next!=null){
                 temp=temp.next;
